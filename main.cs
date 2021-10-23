@@ -31,11 +31,17 @@ namespace MonkeHaveLoooooooongArms_
                   {
                         List<InputDevice> list = new List<InputDevice>();
                         InputDevices.GetDevicesWithCharacteristics(UnityEngine.XR.InputDeviceCharacteristics.HeldInHand | UnityEngine.XR.InputDeviceCharacteristics.Right | UnityEngine.XR.InputDeviceCharacteristics.Controller, list);
-                        list[0].TryGetFeatureValue(CommonUsages.userPresence, out longarms);
+                        list[0].TryGetFeatureValue(CommonUsages.gripButton, out longarms);
 
                          if(longarms)
                          {
                              __instance.maxArmLength = 500f;
+                             __instance.bodyCollider.attachedRigidbody.useGravity = false;
+                         }
+                         else
+                         {
+                             __instance.maxArmLength = 1.1f;
+                             __instance.bodyCollider.attachedRigidbody.useGravity = true;
                          }
                   }
              }
